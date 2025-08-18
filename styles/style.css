@@ -1,0 +1,312 @@
+/* Importa a fonte "Jost" do Google Fonts para ser usada no projeto. */
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* 
+  Define variáveis CSS (cores) no escopo raiz (:root).
+  Isso permite reutilizar os mesmos valores de cor em todo o projeto,
+  facilitando a manutenção e a consistência do design.
+*/
+:root {
+  --cor-primaria: #161F30;
+  --cor-secundaria: #F6F6F6;
+  --cor-terciaria: #62FF00;
+}
+
+/* Habilita a rolagem suave para toda a página ao clicar em links de âncora. */
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+/* Estilos globais aplicados ao corpo (body) do documento. */
+body {
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
+  margin: 0;
+  padding: 0;
+  font-family: "Jost", sans-serif;
+  min-height: 100vh;
+
+}
+
+/* Estilização do container que agrupa os botões de navegação lateral. */
+.botoes-laterais {
+  position: fixed; /* Fixa o menu na tela para que ele não role com a página. */
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%); /* Centraliza verticalmente o container na tela. */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 100; /* Garante que o menu fique acima de outros elementos da página. */
+}
+
+/* Estilo base para cada link (botão) individual na barra lateral. */
+.botoes-laterais__link {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: 2px solid var(--cor-terciaria);
+  border-radius: 50%;
+  text-decoration: none;
+  /* A animação do 'box-shadow' cria o efeito de preenchimento ao passar o mouse. */
+  box-shadow: 0 0 40px 40px var(--cor-primaria) inset, 0 0 0 0 var(--cor-terciaria);
+  transition: all 150ms ease-in-out;
+}
+
+/* Ajusta o tamanho dos ícones dentro dos botões. */
+.botoes-laterais__link img {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+/* Efeito visual quando o mouse passa por cima do botão. */
+.botoes-laterais__link:hover {
+  /* O 'box-shadow' muda para criar um brilho e um preenchimento sutil. */
+  box-shadow: 0 0 10px 0 var(--cor-terciaria) inset, 0 0 10px 4px var(--cor-terciaria);
+  /* Aumenta ligeiramente o tamanho do botão para dar feedback visual. */
+  transform: scale(1.3);
+}
+
+/* Estilo da caixa de dica (tooltip) que aparece ao lado do botão. */
+.botoes-laterais__tooltip {
+  position: absolute;
+  right: 65px; /* Distância do botão */
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--cor-terciaria);
+  color: var(--cor-primaria); /* Cor do texto contrastante com o fundo. */
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap; /* Impede que o texto quebre em várias linhas. */
+  /* Inicialmente, o tooltip está invisível e desativado para eventos de mouse. */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Impede que o tooltip intercepte o mouse */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Torna o tooltip visível quando o mouse está sobre o link pai. */
+.botoes-laterais__link:hover .botoes-laterais__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* --- Estilos para o Conteúdo Principal --- */
+
+/* Container principal que envolve todas as seções de conteúdo. */
+.apresentacao {
+  padding-top: 5%;
+  padding-bottom: 5%; /* Adiciona espaço no final da página */
+  max-width: 65%;
+  padding-left: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 80px; /* Espaço entre as seções */
+}
+
+/* Estilo base para cada seção de conteúdo (Sobre mim, Skills, etc.). */
+.secao-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 24px; /* Espaçamento entre o título e o conteúdo da seção */
+}
+
+/* Estilo para os títulos de cada seção. */
+.secao-conteudo__titulo {
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+  color: var(--cor-terciaria);
+}
+
+/* Estilo para os parágrafos de texto dentro de cada seção. */
+.secao-conteudo__texto {
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.5;
+  max-width: 80ch; /* Limita a largura da linha para melhor legibilidade */
+}
+
+/* --- Estilos para a Seção Home --- */
+
+/* Estilo específico para a seção de boas-vindas (Home) */
+#home {
+  min-height: 80vh; /* Garante que a seção ocupe boa parte da tela inicial */
+  flex-direction: row; /* Alinha os itens (texto e imagem) em uma linha */
+  justify-content: space-between; /* Espaça o texto e a imagem */
+  align-items: center; /* Centraliza verticalmente o texto e a imagem */
+  gap: 40px; /* Adiciona um espaço entre o texto e a imagem */
+}
+
+/* Container para o texto da seção Home */
+.home__conteudo-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* Mantém o espaçamento entre título e parágrafo */
+  text-align: right; /* Alinha o texto à direita, conforme solicitado */
+}
+
+/* Estilo para a imagem de perfil na seção Home */
+.home__imagem {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%; /* Deixa a imagem redonda */
+  object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+  border: 3px solid var(--cor-terciaria);
+  padding: 5px; /* Pequeno espaçamento entre a borda e a imagem */
+  background-color: var(--cor-primaria); /* Garante que o padding tenha a cor de fundo */
+  /* Aplica a animação de brilho neon */
+  animation: neon-glow 2.5s infinite alternate ease-in-out;
+}
+
+/* Animação de brilho (glow) para o efeito neon */
+@keyframes neon-glow {
+  from {
+    box-shadow: 0 0 10px var(--cor-primaria), 0 0 20px var(--cor-terciaria), 0 0 30px var(--cor-terciaria), 0 0 40px var(--cor-terciaria);
+  }
+  to {
+    box-shadow: 0 0 5px var(--cor-primaria), 0 0 10px var(--cor-terciaria), 0 0 15px var(--cor-terciaria), 0 0 20px var(--cor-terciaria);
+  }
+}
+
+/* --- Estilos para o Formulário de Contato --- */
+
+/* Transforma a seção "Fale Comigo" em um layout de duas colunas */
+#fale-comigo {
+  flex-direction: row;
+  align-items: flex-start; /* Alinha os itens ao topo */
+  gap: 60px; /* Espaço entre a coluna de texto e o formulário */
+}
+
+/* Coluna de informações à esquerda do formulário */
+.contato__info {
+  flex: 1; /* Permite que a coluna cresça */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5px; /* Espaçamento reduzido entre título, texto e ícones */
+}
+
+/* Container para os links de redes sociais */
+.contato__social-links {
+  display: flex;
+  gap: 20px; /* Espaço entre os ícones */
+}
+
+.contato__social-links img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.2s ease;
+}
+
+.contato__social-links a:hover img {
+  transform: scale(1.15); /* Efeito de zoom no hover */
+}
+
+/* Container do formulário */
+.form-contato {
+  flex: 1.2; /* Faz o formulário ser um pouco maior que a coluna de texto */
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem; /* Reduz o espaçamento interno para diminuir a altura */
+  border: 2px solid var(--cor-terciaria); /* Adiciona o contorno */
+  border-radius: 16px; /* Arredonda as bordas */
+  box-shadow: 0 0 35px -5px rgba(98, 255, 0, 0.6); /* Aumenta a intensidade do brilho */
+  box-sizing: border-box; /* Garante que padding e border não alterem a largura total */
+  transition: box-shadow 0.3s ease;
+  gap: 15px; /* Reduz o espaçamento entre os campos para um layout mais compacto */
+}
+
+/* Estilo base para os campos de input e textarea */
+.form-contato__input,
+.form-contato__textarea {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--cor-terciaria);
+  padding: 15px;
+  font-size: 1.25rem; /* 20px */
+  color: var(--cor-secundaria);
+  font-family: "Jost", sans-serif;
+  box-sizing: border-box; /* Garante que padding não afete a largura total */
+  outline: none; /* Remove a borda de foco padrão */
+  transition: border-color 0.3s;
+}
+
+/* Estilo para o placeholder dos campos */
+.form-contato__input::placeholder,
+.form-contato__textarea::placeholder {
+  color: var(--cor-secundaria);
+  opacity: 0.7;
+}
+
+/* Muda a cor da borda quando o campo está em foco */
+.form-contato__input:focus,
+.form-contato__textarea:focus {
+  border-bottom-color: #ffffff;
+}
+
+/* Altura específica para a área de texto */
+.form-contato__textarea {
+  min-height: 35px; /* Reduz a altura mínima da área de texto */
+  resize: vertical; /* Permite que o usuário redimensione verticalmente */
+}
+
+/* Estilo do botão de envio */
+.form-contato__botao {
+  align-self: center; /* Centraliza o botão dentro do container do formulário. */
+  width: auto; /* Faz o botão se ajustar ao conteúdo */
+  padding: 12px 32px; /* Reduz o preenchimento para um botão mais compacto. */
+  /* A margem superior foi removida; o espaçamento agora é controlado pelo 'gap' do container */
+  background-color: var(--cor-terciaria);
+  color: var(--cor-primaria);
+  font-size: 1.5rem; /* 24px */
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s;
+  box-shadow: 0 4px 15px -5px rgba(98, 255, 0, 0.4);
+}
+
+/* Efeito de hover para o botão */
+.form-contato__botao:hover {
+  background-color: #4db300; /* Um tom de verde um pouco mais escuro para o hover */
+  box-shadow: 0 6px 20px -5px rgba(98, 255, 0, 0.6);
+  transform: translateY(-2px);
+}
+
+/* --- Estilos para a Janela Flutuante (Toast) --- */
+
+.toast {
+  visibility: hidden; /* Começa escondido */
+  opacity: 0;
+  position: fixed; /* Fica fixo na tela */
+  bottom: 30px; /* Posição a partir do rodapé */
+  left: 50%;
+  transform: translateX(-50%) translateY(100%); /* Centraliza e esconde abaixo */
+  background-color: var(--cor-terciaria);
+  color: var(--cor-primaria);
+  padding: 16px 30px;
+  border-radius: 8px;
+  z-index: 200; /* Garante que fique acima de outros elementos */
+  font-size: 1.1rem;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease-in-out;
+}
+
+/* Classe para mostrar o toast */
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* Efeito de subir ao aparecer */
+}
