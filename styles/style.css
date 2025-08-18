@@ -10,6 +10,8 @@
   --cor-primaria: #161F30;
   --cor-secundaria: #F6F6F6;
   --cor-terciaria: #62FF00;
+  --cor-rodape: #082033;
+  /* --cor-rodape: #22333b; */
 }
 
 /* Habilita a rolagem suave para toda a página ao clicar em links de âncora. */
@@ -282,6 +284,18 @@ body {
   background-color: #4db300; /* Um tom de verde um pouco mais escuro para o hover */
   box-shadow: 0 6px 20px -5px rgba(98, 255, 0, 0.6);
   transform: translateY(-2px);
+}
+
+/* --- Estilos para o Rodapé --- */
+.rodape {
+  padding: 1px;
+  color: var(--cor-secundaria);
+  background-color: var(--cor-primaria);
+  text-align: center;
+  font-family: "Jost", sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  border-top: 1px solid var(--cor-terciaria);
 }
 
 /* --- Estilos para a Janela Flutuante (Toast) --- */
