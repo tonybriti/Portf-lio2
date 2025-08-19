@@ -173,10 +173,10 @@ body {
 /* Animação de brilho (glow) para o efeito neon */
 @keyframes neon-glow {
   from {
-    box-shadow: 0 0 10px var(--cor-primaria), 0 0 20px var(--cor-terciaria), 0 0 30px var(--cor-terciaria), 0 0 40px var(--cor-terciaria);
+    box-shadow: 0 0 10px var(--cor-terciaria), 0 0 20px var(--cor-terciaria), 0 0 30px var(--cor-terciaria), 0 0 40px var(--cor-terciaria);
   }
   to {
-    box-shadow: 0 0 5px var(--cor-primaria), 0 0 10px var(--cor-terciaria), 0 0 15px var(--cor-terciaria), 0 0 20px var(--cor-terciaria);
+    box-shadow: 0 0 5px var(--cor-terciaria), 0 0 10px var(--cor-terciaria), 0 0 15px var(--cor-terciaria), 0 0 20px var(--cor-terciaria);
   }
 }
 
