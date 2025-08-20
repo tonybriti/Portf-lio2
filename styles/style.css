@@ -32,6 +32,17 @@ body {
 
 }
 
+/* Container para a nova animação de partículas.
+   Fica fixo no fundo da página. */
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Fica atrás do conteúdo, mas acima do fundo do body */
+}
+
 /* Estilização do container que agrupa os botões de navegação lateral. */
 .botoes-laterais {
   position: fixed; /* Fixa o menu na tela para que ele não role com a página. */
@@ -41,6 +52,9 @@ body {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  background-color: #424e3b7c;
+  padding: 8px;
+  border-radius: 32px;
   z-index: 100; /* Garante que o menu fique acima de outros elementos da página. */
 }
 
@@ -68,12 +82,22 @@ body {
   flex-shrink: 0;
 }
 
+/* Estilo para o botão de navegação ativo, destacado via JavaScript. */
+.botoes-laterais__link--active {
+  box-shadow: 0 0 10px 0 var(--cor-terciaria) inset, 0 0 10px 4px var(--cor-terciaria);
+}
+
 /* Efeito visual quando o mouse passa por cima do botão. */
 .botoes-laterais__link:hover {
   /* O 'box-shadow' muda para criar um brilho e um preenchimento sutil. */
   box-shadow: 0 0 10px 0 var(--cor-terciaria) inset, 0 0 10px 4px var(--cor-terciaria);
   /* Aumenta ligeiramente o tamanho do botão para dar feedback visual. */
   transform: scale(1.3);
+}
+
+/* Impede que o botão já ativo aumente de tamanho ao passar o mouse, evitando um "salto". */
+.botoes-laterais__link--active:hover {
+  transform: none;
 }
 
 /* Estilo da caixa de dica (tooltip) que aparece ao lado do botão. */
@@ -102,13 +126,20 @@ body {
   visibility: visible;
 }
 
+/* Torna o tooltip visível PERMANENTEMENTE quando o link pai está ativo. */
+.botoes-laterais__link--active .botoes-laterais__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* --- Estilos para o Conteúdo Principal --- */
 
 /* Container principal que envolve todas as seções de conteúdo. */
 .apresentacao {
-  padding-top: 5%;
-  padding-bottom: 5%; /* Adiciona espaço no final da página */
-  max-width: 65%;
+  position: relative; /* Garante que o conteúdo principal fique sobre a animação */
+  z-index: 1;
+  padding-bottom: 10%; /* Aumenta o espaço no final da página, antes do rodapé. */
+  max-width: 70%;
   padding-left: 10%;
   display: flex;
   flex-direction: column;
@@ -124,11 +155,32 @@ body {
   gap: 24px; /* Espaçamento entre o título e o conteúdo da seção */
 }
 
+/* Define o estado inicial para as seções que serão animadas pela biblioteca Motion. */
+/* Elas começam invisíveis (opacity: 0) e deslocadas para baixo (translateY). */
+.secao-conteudo:not(#home) {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
 /* Estilo para os títulos de cada seção. */
 .secao-conteudo__titulo {
   font-size: 2.25rem; /* 36px */
   font-weight: 700;
   color: var(--cor-terciaria);
+}
+
+/* Aplica a fonte "Press Start 2P" especificamente ao título da seção Home. */
+#home .secao-conteudo__titulo {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.6rem; /* Aumenta o tamanho da fonte para maior destaque */
+  line-height: 1.4; /* Melhora o espaçamento entre linhas se o título quebrar */
+  font-weight: 400; /* Esta fonte não possui variações de peso, 400 é o padrão. */
+  margin-bottom: 15px; /* Adiciona espaço apenas abaixo do título principal. */
+  /* Aplica um gradiente de cor ao texto */
+  background: linear-gradient(90deg, var(--cor-terciaria), var(--cor-secundaria));
+  -webkit-background-clip: text; /* Aplica o fundo apenas ao texto (para Chrome, Safari, etc.) */
+  background-clip: text; /* Versão padrão, para compatibilidade */
+  color: transparent; /* Torna a cor do texto transparente para mostrar o fundo */
 }
 
 /* Estilo para os parágrafos de texto dentro de cada seção. */
@@ -142,23 +194,88 @@ body {
 
 /* Estilo específico para a seção de boas-vindas (Home) */
 #home {
-  min-height: 80vh; /* Garante que a seção ocupe boa parte da tela inicial */
-  flex-direction: row; /* Alinha os itens (texto e imagem) em uma linha */
-  justify-content: space-between; /* Espaça o texto e a imagem */
-  align-items: center; /* Centraliza verticalmente o texto e a imagem */
-  gap: 40px; /* Adiciona um espaço entre o texto e a imagem */
+    min-height: 80vh; /* Garante que a seção ocupe boa parte da tela inicial */
+    flex-direction: row; /* Alinha os itens (texto e imagem) em uma linha */
+    justify-content: space-between; /* Espaça o texto e a imagem */
+    align-items: center; /* Centraliza verticalmente o texto e a imagem */
 }
 
 /* Container para o texto da seção Home */
 .home__conteudo-texto {
   display: flex;
   flex-direction: column;
-  gap: 24px; /* Mantém o espaçamento entre título e parágrafo */
-  text-align: right; /* Alinha o texto à direita, conforme solicitado */
+  gap: 0; /* Remove o espaçamento entre os elementos para controle manual. */
+  text-align: left; /* Alinha o texto à esquerda, conforme solicitado. */
+}
+
+/* --- Estilos para a Seção Sobre Mim --- */
+
+#sobre-mim {
+    flex-direction: row; /* Coloca a imagem e o texto lado a lado. */
+    align-items: center; /* Centraliza verticalmente. */
+    gap: 60px; /* Espaço entre a imagem e o texto. */
+}
+
+/* Placeholder para a imagem na seção "Sobre Mim" para manter o layout. */
+.sobre-mim__imagem-placeholder {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0; /* Impede que o placeholder encolha ou estique. */
+}
+
+.sobre-mim__texto-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Espaço entre o título e os parágrafos. */
+    text-align: right; /* Alinha todo o texto dentro do container à direita. */
+}
+
+/* Aumenta o tamanho da fonte especificamente para o parágrafo "Me chamo" na seção Home. */
+#home .secao-conteudo__texto {
+  font-size: 2.3rem; /* Aumenta o tamanho da fonte de 1.5rem para 2rem. */
+  margin-bottom: 0; /* Remove a margem inferior para aproximar do nome animado. */
+}
+
+/* Estilo para o nome animado com efeito de digitação */
+.home__nome-animado {
+  font-family: 'Press Start 2P', cursive; /* Nova fonte aplicada */
+  font-size: 2rem; /* Tamanho ajustado para a nova fonte */
+  font-weight: 400; /* Esta fonte não possui variações de peso, 400 é o padrão. */
+  /* Altura fixa para evitar que o layout "pule" durante a animação */
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  margin-top: 1px; /* Ajusta a margem superior para um espaçamento sutil. */
+  /* Aplica um gradiente de cor ao texto, substituindo o efeito neon. */
+  background: linear-gradient(170deg, var(--cor-secundaria), var(--cor-terciaria));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* O cursor piscando ao lado do texto animado */
+.cursor-animado {
+  display: inline-block;
+  background-color: var(--cor-terciaria);
+  width: 4px;
+  height: 3.5rem; /* Altura para combinar com o novo tamanho do texto */
+  margin-left: 8px;
+  animation: blink 1s infinite;
+}
+
+/* Animação de piscar para o cursor */
+@keyframes blink {
+    0%   { background-color: var(--cor-terciaria); }
+    49%  { background-color: var(--cor-terciaria); }
+    50%  { background-color: transparent; }
+    99%  { background-color: transparent; }
+    100% { background-color: var(--cor-terciaria); }
 }
 
 /* Estilo para a imagem de perfil na seção Home */
 .home__imagem {
+  position: sticky; /* Faz a imagem "grudar" na tela durante a rolagem. */
+  top: calc(50vh - 175px); /* Centraliza a imagem verticalmente na tela. 175px = 350px / 2 */
   width: 350px;
   height: 350px;
   border-radius: 50%; /* Deixa a imagem redonda */
@@ -166,8 +283,21 @@ body {
   border: 3px solid var(--cor-terciaria);
   padding: 5px; /* Pequeno espaçamento entre a borda e a imagem */
   background-color: var(--cor-primaria); /* Garante que o padding tenha a cor de fundo */
+  z-index: 5; /* Garante que a imagem fique na frente do texto ao rolar. */
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transição suave para todas as propriedades. */
   /* Aplica a animação de brilho neon */
   animation: neon-glow 2.5s infinite alternate ease-in-out;
+}
+
+/* Classe adicionada via JS para transformar a imagem quando na seção "Sobre Mim". */
+.home__imagem.in-about-section {
+    width: 300px;
+    height: 300px;
+    /* A propriedade 'left' força o movimento horizontal para alinhar com o conteúdo principal. */
+    left: 10%; 
+    border-radius: 20px; /* Bordas arredondadas. */
+    box-shadow: 0 0 25px -5px rgba(98, 255, 0, 0.5); /* Brilho sutil. */
+    animation: none; /* Remove a animação de brilho pulsante. */
 }
 
 /* Animação de brilho (glow) para o efeito neon */
@@ -288,9 +418,11 @@ body {
 
 /* --- Estilos para o Rodapé --- */
 .rodape {
+  position: relative; /* Garante que o rodapé fique sobre a animação */
+  z-index: 1;
   padding: 1px;
   color: var(--cor-secundaria);
-  background-color: var(--cor-primaria);
+  background-color: transparent; /* Torna o fundo transparente para ver a animação. */
   text-align: center;
   font-family: "Jost", sans-serif;
   font-size: 1.25rem;
@@ -323,4 +455,398 @@ body {
   visibility: visible;
   opacity: 1;
   transform: translateX(-50%) translateY(0); /* Efeito de subir ao aparecer */
+}
+
+/* --- Estilos para a Seção de Skills --- */
+
+/* Wrapper para o carrossel que aplica a máscara e esconde o overflow. */
+.skills-carousel-wrapper {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  padding: 23px 0; /* Adiciona espaço vertical para evitar que o brilho do hover seja cortado. */
+}
+
+/* Container que organiza os cards de habilidades em um grid responsivo. */
+.skills-container {
+  display: flex; /* Muda para flex para criar uma linha contínua. */
+  gap: 25px; /* Espaçamento entre os cards */
+  /* A largura é calculada para caber todos os cards (originais + cópias). */
+  width: max-content;
+  /* Animação de rolagem. A duração foi aumentada para acomodar mais skills. */
+  animation: scroll-skills 40s linear infinite;
+}
+
+/* Pausa a animação quando o mouse está sobre a área do carrossel. */
+.skills-carousel-wrapper:hover .skills-container {
+  animation-play-state: paused;
+}
+
+/* Card individual para cada habilidade. */
+.skill-card {
+  background-color: #252D40; /* Um tom escuro, complementar ao fundo. */
+  border: 1px solid transparent; /* Borda inicial transparente. */
+  border-radius: 10px;
+  padding: 20px; /* Reduz o padding para acomodar o novo tamanho. */
+  width: 160px; /* Largura fixa para consistência no carrossel. */
+  height: 160px; /* Altura fixa para criar um quadrado. */
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  /* Adiciona flexbox para centralizar o conteúdo perfeitamente. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px; /* Espaçamento ajustado para o novo tamanho. */
+}
+
+/* Efeito de hover para destacar o card. */
+.skill-card:hover {
+  transform: translateY(-8px); /* Eleva o card. */
+  border-color: var(--cor-terciaria); /* Mostra a borda com a cor de destaque. */
+  box-shadow: 0 0 15px -2px var(--cor-terciaria); /* Adiciona um brilho sutil. */
+}
+
+/* Ícone da habilidade (ex: HTML5, CSS3). */
+.skill-icon {
+  font-size: 42px; /* Tamanho do ícone ajustado. */
+  color: var(--cor-terciaria); /* Usa a cor de destaque do projeto. */
+  /* Estilos para garantir que todos os ícones tenham o mesmo tamanho de caixa. */
+  height: 45px;
+  width: 45px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0; /* O espaçamento agora é controlado pelo 'gap' do card. */
+}
+
+/* Nome da habilidade. */
+.skill-name {
+  font-size: 1.1rem; /* Tamanho da fonte ajustado. */
+  font-weight: 500;
+  margin: 0; /* O espaçamento agora é controlado pelo 'gap' do card. */
+  color: var(--cor-secundaria);
+}
+
+/* Animação que move o container de skills da direita para a esquerda. */
+@keyframes scroll-skills {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* Move o container em 50% de sua largura, que corresponde ao tamanho dos cards originais. */
+    transform: translateX(-50%);
+  }
+}
+
+/* --- Estilos para o Carrossel de Certificados --- */
+
+.certificados-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden; /* Esconde os cards que estão fora da área visível. */
+  padding: 0 50px; /* Adiciona espaço para os botões de navegação não sobreporem os cards. */
+  box-sizing: border-box;
+}
+
+.certificados-track {
+  display: flex;
+  gap: 20px; /* Espaçamento entre os cards. */
+  transition: transform 0.5s ease-in-out; /* Animação suave de deslizamento. */
+}
+
+.certificado-card {
+  background-color: #252D40;
+  border-radius: 10px;
+  overflow: hidden; /* Garante que a imagem não ultrapasse as bordas arredondadas. */
+  text-align: center;
+  flex: 0 0 31%; /* Tenta mostrar 3 cards por vez, ajustável. */
+  min-width: 280px; /* Largura mínima para responsividade. */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.certificado-card:hover {
+  transform: scale(1.03);
+}
+
+.certificado-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9; /* Proporção comum para imagens de certificados/banners. */
+  object-fit: cover;
+  display: block;
+}
+
+.certificado-titulo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cor-secundaria);
+  margin: 15px 10px 5px;
+}
+
+.certificado-instituicao {
+  font-size: 1rem;
+  color: var(--cor-terciaria);
+  margin: 0 10px 15px;
+}
+
+/* Estilos para os botões de navegação do carrossel. */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(22, 31, 48, 0.7); /* Fundo semitransparente. */
+  color: var(--cor-terciaria);
+  border: 1px solid var(--cor-terciaria);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.carousel-btn.prev { left: 0; }
+.carousel-btn.next { right: 0; }
+
+.carousel-btn:hover { background-color: var(--cor-terciaria); color: var(--cor-primaria); }
+
+/* --- Estilos para a Seção de Projetos --- */
+
+.projetos-container {
+    display: grid; /* Alterado para grid para garantir 3 colunas. */
+    grid-template-columns: repeat(3, 1fr); /* Cria 3 colunas de largura igual. */
+    gap: 30px;
+    width: 100%;
+}
+
+.projeto-card {
+    background-color: #252D40; /* Cor consistente com outros cards. */
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 20px -5px var(--cor-terciaria); /* Adiciona brilho neon no hover */
+}
+
+.card-imagem {
+    height: 160px; /* Altura da imagem reduzida ainda mais. */
+    background-size: cover;
+    background-position: center;
+    border-bottom: 2px solid var(--cor-terciaria); /* Linha de separação com a cor de destaque */
+}
+
+/* --- Imagens específicas para cada cartão --- */
+/* IMPORTANTE: Substitua os caminhos pelas suas imagens na pasta 'assets' */
+#imagem-projeto-1 {
+    background-image: url('../assets/projeto-placeholder-1.png');
+}
+
+#imagem-projeto-2 {
+    background-image: url('../assets/projeto-placeholder-2.png');
+}
+
+#imagem-projeto-3 {
+    background-image: url('../assets/projeto-placeholder-3.png');
+}
+
+.card-conteudo {
+    padding: 20px; /* Padding do conteúdo reduzido. */
+    color: var(--cor-secundaria);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-titulo {
+    margin: 0 0 15px 0;
+    font-size: 1.4rem; /* Tamanho da fonte do título reduzido. */
+    font-weight: 700;
+    color: var(--cor-secundaria); /* Garante consistência com outros títulos */
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.card-tags span {
+    background-color: rgba(98, 255, 0, 0.15); /* Fundo com a cor de destaque e baixa opacidade */
+    color: var(--cor-terciaria); /* Texto com a cor de destaque */
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.card-botao {
+    background-color: var(--cor-terciaria);
+    color: var(--cor-primaria);
+    text-decoration: none;
+    padding: 10px 12px; /* Padding do botão ajustado. */
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: auto; /* Empurra o botão para o final do cartão */
+    transition: all 0.3s ease;
+}
+
+.card-botao:hover {
+    background-color: #4db300; /* Tom mais escuro para o hover, consistente com o botão de contato */
+    transform: scale(1.05);
+}
+
+/* --- Media Queries para Responsividade --- */
+
+/* Telas de tablet e laptops menores (até 1200px) */
+@media (max-width: 1200px) {
+    .apresentacao {
+        max-width: 85%;
+        padding-left: 5%;
+        gap: 60px;
+        margin-top: 40%;
+    }
+
+    .projetos-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .certificado-card {
+        flex: 0 0 48%; /* Mostra 2 cards por vez */
+    }
+}
+
+/* Telas de tablet (até 1024px) */
+@media (max-width: 1024px) {
+    .apresentacao {
+        max-width: 90%;
+        padding-left: 2%;
+    }
+
+    #home,
+    #sobre-mim,
+    #fale-comigo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .sobre-mim__texto-container {
+        text-align: center;
+    }
+
+    .home__conteudo-texto {
+        text-align: center;
+        align-items: center;
+    }
+
+    .secao-conteudo__titulo {
+        font-size: 2rem;
+    }
+
+    .secao-conteudo__texto {
+        font-size: 1.25rem;
+    }
+
+    #home .secao-conteudo__titulo {
+        font-size: 2.2rem;
+    }
+
+    #home .secao-conteudo__texto {
+        font-size: 2rem;
+    }
+
+    .home__nome-animado {
+        font-size: 3rem;
+    }
+
+    .sobre-mim__imagem {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 30px;
+    }
+
+    .projetos-container {
+        gap: 20px;
+    }
+
+    .contato__info {
+        text-align: center;
+        align-items: center;
+    }
+}
+
+/* Telas de celular (até 768px) */
+@media (max-width: 768px) {
+    body {
+        padding-bottom: 80px; /* Espaço para a barra de navegação inferior */
+    }
+
+    .apresentacao {
+        max-width: 90%;
+        padding-left: 0;
+        margin: 0 auto;
+        gap: 50px;
+    }
+
+    .botoes-laterais {
+        top: auto;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        transform: none;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: var(--cor-rodape);
+        padding: 10px 0;
+        border-radius: 20px 20px 0 0;
+        border-top: 1px solid var(--cor-terciaria);
+    }
+
+    .botoes-laterais__link { width: 45px; height: 45px; }
+    .botoes-laterais__link img { width: 25px; height: 25px; }
+    .botoes-laterais__tooltip { display: none; }
+    .botoes-laterais__link:hover { transform: scale(1.1); }
+    .botoes-laterais__link--active:hover { transform: none; }
+
+    .projetos-container { grid-template-columns: 1fr; }
+    .certificado-card { flex: 0 0 90%; }
+    .certificados-carousel { padding: 0 20px; }
+    .carousel-btn { width: 40px; height: 40px; }
+    .carousel-btn.prev { left: -10px; }
+    .carousel-btn.next { right: -10px; }
+}
+
+/* Telas de celular menores (até 480px) */
+@media (max-width: 480px) {
+    .secao-conteudo__titulo { font-size: 1.8rem; }
+    .secao-conteudo__texto { font-size: 1.1rem; }
+
+    #home .secao-conteudo__titulo { font-size: 1.8rem; line-height: 1.3; }
+    #home .secao-conteudo__texto { font-size: 1.5rem; }
+    .home__nome-animado { font-size: 2.5rem; min-height: 45px; }
+    .cursor-animado { height: 2.5rem; }
+
+    .sobre-mim__imagem {
+        width: 200px;
+        height: 200px;
+    }
+
+    .form-contato { padding: 1rem; }
+    .form-contato__input,
+    .form-contato__textarea { font-size: 1.1rem; }
+    .form-contato__botao { font-size: 1.2rem; }
 }
