@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tony Brito.dev</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="styles/style.css">
     <!-- Adiciona a biblioteca de ícones Font Awesome para a seção de Skills -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -29,15 +30,13 @@
                     <span class="texto-dinamico"></span><span class="cursor-animado">&nbsp;</span>
                 </h2>
             </div>
-            <img id="profile-pic" class="home__imagem" src="assets/img-eu2.png" alt="Foto de perfil">
+            <img id="profile-pic" class="home__imagem" src="assets/img-eu.jpg" alt="Foto de perfil">
         </section>
         <div id="sobre_mim_a"></div>
         <section id="sobre-mim" class="secao-conteudo">
-            <div class="sobre-mim__imagem-placeholder"></div> <!-- Garante que o espaço para a foto seja reservado -->
             <div class="sobre-mim__texto-container">
                 <h2 class="secao-conteudo__titulo">Sobre Mim</h2>
-                <p class="secao-conteudo__texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.</p>
-                <p class="secao-conteudo__texto">Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales.</p>
+                <p class="secao-conteudo__texto">Sou um jovem apaixonado por tecnologia e programação. Atuo como desenvolvedor iniciante em data science, com interesse também na área de front-end. Atualmente participo do programa Jovem Tech, onde venho aprimorando minhas habilidades técnicas e profissionais para conquistar meu espaço no mercado de trabalho.</p>
             </div>
         </section>
 
@@ -60,12 +59,8 @@
                         <p class="skill-name">JavaScript</p>
                     </div>
                     <div class="skill-card">
-                        <i class="fab fa-react skill-icon"></i>
-                        <p class="skill-name">React</p>
-                    </div>
-                    <div class="skill-card">
-                        <i class="fab fa-node-js skill-icon"></i>
-                        <p class="skill-name">Node.js</p>
+                        <i class="fas fa-chart-pie skill-icon"></i>
+                        <p class="skill-name">Power BI</p>
                     </div>
                     <div class="skill-card">
                         <i class="fab fa-python skill-icon"></i>
@@ -76,8 +71,8 @@
                         <p class="skill-name">Git</p>
                     </div>
                     <div class="skill-card">
-                        <i class="fab fa-docker skill-icon"></i>
-                        <p class="skill-name">Docker</p>
+                        <i class="fas fa-chart-bar skill-icon"></i>
+                        <p class="skill-name">Pandas</p>
                     </div>
 
                     <!-- Cópia dos cards para garantir a rolagem infinita e sem falhas -->
@@ -94,12 +89,8 @@
                         <p class="skill-name">JavaScript</p>
                     </div>
                     <div class="skill-card" aria-hidden="true">
-                        <i class="fab fa-react skill-icon"></i>
-                        <p class="skill-name">React</p>
-                    </div>
-                    <div class="skill-card" aria-hidden="true">
-                        <i class="fab fa-node-js skill-icon"></i>
-                        <p class="skill-name">Node.js</p>
+                        <i class="fas fa-chart-pie skill-icon"></i>
+                        <p class="skill-name">Power BI</p>
                     </div>
                     <div class="skill-card" aria-hidden="true">
                         <i class="fab fa-python skill-icon"></i>
@@ -110,8 +101,8 @@
                         <p class="skill-name">Git</p>
                     </div>
                     <div class="skill-card" aria-hidden="true">
-                        <i class="fab fa-docker skill-icon"></i>
-                        <p class="skill-name">Docker</p>
+                        <i class="fas fa-chart-bar skill-icon"></i>
+                        <p class="skill-name">Pandas</p>
                     </div>
                 </div>
             </div>
@@ -122,73 +113,72 @@
             <h2 class="secao-conteudo__titulo">Certificados</h2>
             <div class="certificados-carousel">
                 <div class="certificados-track">
-                    <!-- Card de Certificado (Exemplo 1) -->
-                    <div class="certificado-card">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de Lógica de Programação">
-                        <h3 class="certificado-titulo">Lógica de Programação</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
+                    <!-- 
+                        Card de Certificado (Exemplo 1) 
+                        - O 'href' aponta para a imagem em tamanho real que será aberta.
+                        - O 'src' no 'img' deve ser o caminho para a imagem que aparece no card.
+                        - target="_blank" faz o link abrir em uma nova aba.
+                    -->
+                    <a href="assets/certificados/imersão dados - certificado.pdf.png" target="_blank" rel="noopener noreferrer">
+                        <div class="certificado-card">
+                            <img src="assets/certificados/imersão dados - certificado.pdf.png" alt="Pré-visualização do Certificado de Imersão em Dados">
+                            <h3 class="certificado-titulo">Imersão dados</h3>
+                            <p class="certificado-instituicao">Alura</p>
+                        </div>
+                    </a>
                     <!-- Card de Certificado (Exemplo 2) -->
-                    <div class="certificado-card">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de HTML e CSS">
-                        <h3 class="certificado-titulo">HTML e CSS</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
+                    <a href="assets/certificados/certificado 2 - python para data science.pdf.png" target="_blank" rel="noopener noreferrer">
+                        <div class="certificado-card">
+                            <img src="assets/certificados/certificado 2 - python para data science.pdf.png" alt="Pré-visualização do Certificado de Python para Data Science">
+                            <h3 class="certificado-titulo">Python para data science</h3>
+                            <p class="certificado-instituicao">Alura</p>
+                        </div>
+                    </a>
                     <!-- Card de Certificado (Exemplo 3) -->
-                    <div class="certificado-card">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de JavaScript">
-                        <h3 class="certificado-titulo">JavaScript para Web</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
+                    <a href="assets/certificados/certificado 3 - python com orientação a objetos.pdf.png" target="_blank" rel="noopener noreferrer">
+                        <div class="certificado-card">
+                            <img src="assets/certificados/certificado 3 - python com orientação a objetos.pdf.png" alt="Pré-visualização do Certificado de Python com Orientação a Objetos">
+                            <h3 class="certificado-titulo">Orientação a objetos com python</h3>
+                            <p class="certificado-instituicao">Alura</p>
+                        </div>
+                    </a>
                     <!-- Card de Certificado (Exemplo 4) -->
-                    <div class="certificado-card">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de React">
-                        <h3 class="certificado-titulo">React: Avançando</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
+                    <a href="assets/certificados/certificado 4 - JS paginas dinamicas.pdf.png" target="_blank" rel="noopener noreferrer">
+                        <div class="certificado-card">
+                            <img src="assets/certificados/certificado 4 - JS paginas dinamicas.pdf.png" alt="Pré-visualização do Certificado de JavaScript para Páginas Dinâmicas">
+                            <h3 class="certificado-titulo">JavaScript: Construindo páginas dinâmicas</h3>
+                            <p class="certificado-instituicao">Alura</p>
+                        </div>
+                    </a>
                     <!-- Card de Certificado (Exemplo 5) -->
-                    <div class="certificado-card">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de Node.js">
-                        <h3 class="certificado-titulo">Node.js: API Rest</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
+                    <a href="assets/certificados/certificado 5 - JS DOM.pdf.png" target="_blank" rel="noopener noreferrer">
+                        <div class="certificado-card">
+                            <img src="assets/certificados/certificado 5 - JS DOM.pdf.png" alt="Pré-visualização do Certificado de JavaScript Manipulando o DOM">
+                            <h3 class="certificado-titulo">JavaScript: Manipulando elementos no DOM</h3>
+                            <p class="certificado-instituicao">Alura</p>
+                        </div>
+                    </a>
                     <!-- Card de Certificado (Exemplo 6) -->
-                    <div class="certificado-card">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de Git e GitHub">
-                        <h3 class="certificado-titulo">Git e GitHub</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
+                    <a href="assets/certificados/certificado 1.pdf.png" target="_blank" rel="noopener noreferrer">
+                        <div class="certificado-card">
+                            <img src="assets/certificados/certificado 1.pdf.png" alt="Pré-visualização do Certificado de Git e GitHub">
+                            <h3 class="certificado-titulo">Git e GitHub</h3>
+                            <p class="certificado-instituicao">Alura</p>
+                        </div>
+                    </a>
                     <!-- Cópia dos certificados para o carrossel infinito -->
-                    <div class="certificado-card" aria-hidden="true">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de Lógica de Programação">
-                        <h3 class="certificado-titulo">Lógica de Programação</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
-                    <div class="certificado-card" aria-hidden="true">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de HTML e CSS">
-                        <h3 class="certificado-titulo">HTML e CSS</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
-                    <div class="certificado-card" aria-hidden="true">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de JavaScript">
-                        <h3 class="certificado-titulo">JavaScript para Web</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
-                    <div class="certificado-card" aria-hidden="true">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de React">
-                        <h3 class="certificado-titulo">React: Avançando</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
-                    <div class="certificado-card" aria-hidden="true">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de Node.js">
-                        <h3 class="certificado-titulo">Node.js: API Rest</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
-                    <div class="certificado-card" aria-hidden="true">
-                        <img src="assets/certificado-placeholder.png" alt="Certificado de Git e GitHub">
-                        <h3 class="certificado-titulo">Git e GitHub</h3>
-                        <p class="certificado-instituicao">Alura</p>
-                    </div>
+                    <a href="assets/certificados/imersão dados - certificado.pdf.png" target="_blank" rel="noopener noreferrer" aria-hidden="true">
+                        <div class="certificado-card">
+                            <img src="assets/certificados/imersão dados - certificado.pdf.png" alt="Pré-visualização do Certificado de Imersão em Dados">
+                            <h3 class="certificado-titulo">Imersão dados</h3>
+                            <p class="certificado-instituicao">Alura</p>
+                        </div>
+                    </a>
+                    <a href="assets/certificados/certificado 2 - python para data science.pdf.png" target="_blank" rel="noopener noreferrer" aria-hidden="true"><div class="certificado-card"><img src="assets/certificados/certificado 2 - python para data science.pdf.png" alt="Pré-visualização do Certificado de Python para Data Science"><h3 class="certificado-titulo">Python para data science</h3><p class="certificado-instituicao">Alura</p></div></a>
+                    <a href="assets/certificados/certificado 3 - python com orientação a objetos.pdf.png" target="_blank" rel="noopener noreferrer" aria-hidden="true"><div class="certificado-card"><img src="assets/certificados/certificado 3 - python com orientação a objetos.pdf.png" alt="Pré-visualização do Certificado de Python com Orientação a Objetos"><h3 class="certificado-titulo">Orientação a objetos com python</h3><p class="certificado-instituicao">Alura</p></div></a>
+                    <a href="assets/certificados/certificado 4 - JS paginas dinamicas.pdf.png" target="_blank" rel="noopener noreferrer" aria-hidden="true"><div class="certificado-card"><img src="assets/certificados/certificado 4 - JS paginas dinamicas.pdf.png" alt="Pré-visualização do Certificado de JavaScript para Páginas Dinâmicas"><h3 class="certificado-titulo">JavaScript: Construindo páginas dinâmicas</h3><p class="certificado-instituicao">Alura</p></div></a>
+                    <a href="assets/certificados/certificado 5 - JS DOM.pdf.png" target="_blank" rel="noopener noreferrer" aria-hidden="true"><div class="certificado-card"><img src="assets/certificados/certificado 5 - JS DOM.pdf.png" alt="Pré-visualização do Certificado de JavaScript Manipulando o DOM"><h3 class="certificado-titulo">JavaScript: Manipulando elementos no DOM</h3><p class="certificado-instituicao">Alura</p></div></a>
+                    <a href="assets/certificados/certificado 1.pdf.png" target="_blank" rel="noopener noreferrer" aria-hidden="true"><div class="certificado-card"><img src="assets/certificados/certificado 1.pdf.png" alt="Pré-visualização do Certificado de Git e GitHub"><h3 class="certificado-titulo">Git e GitHub</h3><p class="certificado-instituicao">Alura</p></div></a>
                 </div>
                 <button class="carousel-btn prev" aria-label="Certificado anterior"><i class="fas fa-chevron-left"></i></button>
                 <button class="carousel-btn next" aria-label="Próximo certificado"><i class="fas fa-chevron-right"></i></button>
@@ -203,39 +193,42 @@
                 <div class="projeto-card">
                     <div class="card-imagem" id="imagem-projeto-1"></div>
                     <div class="card-conteudo">
-                        <h3 class="card-titulo">Site Guia Maranhão</h3>
+                        <h3 class="card-titulo">Fokus</h3>
+                        <p class="card-area">Front-end</p>
                         <div class="card-tags">
                             <span>HTML</span>
                             <span>CSS</span>
                             <span>JavaScript</span>
                         </div>
-                        <a href="#" class="card-botao">Acessar Projeto</a>
+                        <a href="https://github.com/tonybriti/fokus" target="_blank" rel="noopener noreferrer" class="card-botao">Acessar Projeto</a>
                     </div>
                 </div>
                 <!-- Card de Projeto 2 -->
                 <div class="projeto-card">
                     <div class="card-imagem" id="imagem-projeto-2"></div>
                     <div class="card-conteudo">
-                        <h3 class="card-titulo">Banco de Dados – Sistemas Carros</h3>
+                        <h3 class="card-titulo">Lista de Compras</h3>
+                        <p class="card-area">Front-end</p>
                         <div class="card-tags">
-                            <span>PostgreSQL</span>
-                            <span>SQL</span>
-                            <span>PL/pgSQL</span>
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
                         </div>
-                        <a href="#" class="card-botao">Acessar Projeto</a>
+                        <a href="https://github.com/tonybriti/lista-de-compras" target="_blank" rel="noopener noreferrer" class="card-botao">Acessar Projeto</a>
                     </div>
                 </div>
                 <!-- Card de Projeto 3 -->
                 <div class="projeto-card">
                     <div class="card-imagem" id="imagem-projeto-3"></div>
                     <div class="card-conteudo">
-                        <h3 class="card-titulo">T-MED - App de Saúde Ocupacional</h3>
+                        <h3 class="card-titulo">Previsão de Perdas de Interfolhados</h3>
+                        <p class="card-area">Data Science</p>
                         <div class="card-tags">
-                            <span>Figma</span>
-                            <span>UI/UX</span>
-                            <span>Protótipo</span>
+                            <span>Python</span>
+                            <span>Machine Learning</span>
+                            <span>Pandas</span>
                         </div>
-                        <a href="#" class="card-botao">Acessar Projeto</a>
+                        <a href="https://encurtador.com.br/k8cef" target="_blank" rel="noopener noreferrer" class="card-botao">Acessar Projeto</a>
                     </div>
                 </div>
             </div>
@@ -245,7 +238,7 @@
         <section id="fale-comigo" class="secao-conteudo">
             <div class="contato__info">
                 <h2 class="secao-conteudo__titulo">E aí<br>Vamos trabalhar juntos?</h2>
-                <p class="secao-conteudo__texto">Preencha o formulário ao lado ou, se preferir, me encontre nas redes sociais abaixo.</p>
+                <p class="secao-conteudo__texto">Preencha o formulário ao lado ou, se preferir, me encontre nas redes abaixo.</p>
                 <div class="contato__social-links">
                     <a href="https://github.com/tonybriti" target="_blank" class="social-link" aria-label="GitHub">
                         <img src="assets/icon-git2.png" alt="Ícone do GitHub">
@@ -269,10 +262,21 @@
     </main>
 
     <footer class="rodape">
-        <p>Desenvolvido por Tony Brito.</p>
+        <p>
+            Desenvolvido por Antonio Wildson<br>
+            Todos os direitos reservados ©
+        </p>
     </footer>
 
     <nav class="botoes-laterais">
+        <!-- Checkbox para controlar o estado do menu (aberto/fechado) -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <!-- O label será nosso botão hambúrguer clicável -->
+        <label for="menu-toggle" class="menu-hamburguer">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
         <a href="#home_a" class="botoes-laterais__link" aria-label="Home">
             <img src="assets/icon-home.png" alt="Ícone da seção Home">
             <span class="botoes-laterais__tooltip">Home</span>
